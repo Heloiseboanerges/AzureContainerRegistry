@@ -32,6 +32,16 @@ steps:
       inputs:
         command: images
 
+    - task: Docker@1
+      displayName: Tag image
+      inputs:
+        command: tag
+        arguments: $(Build.BuildId) bonitatest.azurecr.io/bonita/bonita:7.10
+
+    - task: Docker@1
+      displayName: List image
+      inputs:
+        command: images
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
