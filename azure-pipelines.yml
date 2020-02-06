@@ -36,7 +36,7 @@ steps:
    
     - task: CmdLine@2
       inputs:
-        script: 'docker tag bonita:7.10 ***/bonita:7.10'
+        script: 'docker tag bonita:7.10 bonitatest.azurecr.io/bonita:7.10'
        
 
     - task: Docker@1
