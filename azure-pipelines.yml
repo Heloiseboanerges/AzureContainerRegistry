@@ -37,8 +37,9 @@ steps:
     - task: Docker@1
       displayName: Tag image
       inputs:
-        command: tag
         arguments: bonita:7.10 bonitatest.azurecr.io/bonita/bonita:7.10
+        command: tag
+        
 
     - task: Docker@1
       displayName: List image
