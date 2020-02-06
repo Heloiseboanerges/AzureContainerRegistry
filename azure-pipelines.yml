@@ -33,7 +33,7 @@ steps:
       inputs:
         arguments: bonita
         command: images
-    -script: echo $(list.repository)     
+    -script: echo $(list)     
    
     - task: Docker@1
       displayName: Tag image
