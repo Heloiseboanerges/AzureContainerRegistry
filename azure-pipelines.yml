@@ -32,13 +32,11 @@ steps:
       displayName: List image
       inputs:
         arguments: bonita
-        command: images
-    - script: echo $(list)     
+        command: images    
    
     - task: Docker@1
       displayName: Tag image
       inputs:
-        arguments: $(list) bonitatest.azurecr.io/bonita/bonita:7.10
         command: tag
         
 
