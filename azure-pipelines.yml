@@ -20,7 +20,7 @@ variables:
   ImageName: 'bonita'
 
 stages:
-- stage: Pull and Push
+- stage: Build
   displayName: pull and push stage
   jobs:  
   - job: Build
