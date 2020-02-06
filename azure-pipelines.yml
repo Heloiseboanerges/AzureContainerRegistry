@@ -53,4 +53,4 @@ steps:
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
-          bonita.$(tag)
+          bonita:7.10
