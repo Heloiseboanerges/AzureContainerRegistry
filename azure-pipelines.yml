@@ -19,12 +19,9 @@ variables:
   # Agent VM image name
   ImageName: 'bonita'
 
-steps:
-
-
 stages:
-- stage: Build
-  displayName: Build and push stage
+- stage: Pull and Push
+  displayName: pull and push stage
   jobs:  
   - job: Build
     displayName: Build
