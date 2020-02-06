@@ -30,7 +30,9 @@ steps:
     - task: Docker@1
       displayName: List image
       inputs:
-        command: images $(ImageName)
+        arguments: bonita
+        command: images
+        
 
     - task: Docker@1
       displayName: Tag image
