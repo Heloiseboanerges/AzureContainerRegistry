@@ -28,6 +28,7 @@ steps:
         command: pull
 
     - task: Docker@1
+      name: list
       displayName: List image
       inputs:
         arguments: bonita
@@ -37,7 +38,7 @@ steps:
     - task: Docker@1
       displayName: Tag image
       inputs:
-        arguments: bonita:7.10 bonitatest.azurecr.io/bonita/bonita:7.10
+        arguments: $(list) bonitatest.azurecr.io/bonita/bonita:7.10
         command: tag
         
 
