@@ -1,0 +1,49 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'f354dd40-f8a6-4531-9253-dd7dfb1e4631'
+  imageRepository: 'bonita'
+  containerRegistry: 'bonitatest.azurecr.io'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildId)'
+  
+  # Agent VM image name
+  ImageName: 'bonita'
+
+  steps:
+  - task: Docker@1
+    displayName: 'pull an image'
+    inputs:
+      azureSubscriptionEndpoint: '$(Azure.ServiceConnectionId)'
+      azureContainerRegistry: '$(ACR.FullName)'
+      imageName: '$(ImageName)'
+      command: pull
+      dockerFile: '**/Dockerfile'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(ImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
